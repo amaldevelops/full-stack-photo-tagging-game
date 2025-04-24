@@ -1,0 +1,24 @@
+{
+  "name": "frontendphototagginggame",
+  "version": "1.0.0",
+  "description": "Front End Photo Tagging Game",
+  "keywords": [
+    "photo",
+    "tagging"
+  ],
+  "homepage": "https://github.com/amaldevelops/full-stack-photo-tagging-game#readme",
+  "bugs": {
+    "url": "https://github.com/amaldevelops/full-stack-photo-tagging-game/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amaldevelops/full-stack-photo-tagging-game.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Amal K",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
