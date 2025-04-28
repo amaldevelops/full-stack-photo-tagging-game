@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Index() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   function navigateToGame() {
     console.log("Yayyy");
   }
@@ -11,6 +11,7 @@ function Index() {
       <button type="button" onClick={() => navigateToGame()}>
         Start Game
       </button>
+      {/* <Link to={"Game"}/> */}
     </div>
   );
 }
