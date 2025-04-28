@@ -1,7 +1,11 @@
+import { useNavigate, Link } from "react-router-dom";
+
 function Game() {
   return (
     <div>
       <h1>Where's Maverick (A photo tagging Game)</h1>
+      <Link to="/">Home</Link>
+      <div></div>
     </div>
   );
 }

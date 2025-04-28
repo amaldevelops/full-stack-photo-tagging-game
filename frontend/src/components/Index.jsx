@@ -1,9 +1,12 @@
 import { useNavigate, Link } from "react-router-dom";
 
 function Index() {
+  const navigate = useNavigate();
+
   // const navigate = useNavigate();
   function navigateToGame() {
-    console.log("Yayyy");
+    console.log("Navigate to Game");
+    navigate("/game");
   }
   return (
     <div>
@@ -11,7 +14,7 @@ function Index() {
       <button type="button" onClick={() => navigateToGame()}>
         Start Game
       </button>
-      {/* <Link to={"Game"}/> */}
+      {/* <Link to="/game">Game Start</Link> */}
     </div>
   );
 }
