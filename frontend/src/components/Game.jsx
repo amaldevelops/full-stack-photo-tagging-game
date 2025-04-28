@@ -9,28 +9,42 @@ function Game() {
   return (
     <div>
       <h1>Where's Maverick (A photo tagging Game)</h1>
-      <div>
-        <img />
-      </div>
-      <Link to="/">Home</Link>
-      <div>
-        <img
-          className="characterImages"
-          src={maverickPic}
-          alt="Maverick Picture"
-        />
 
-        <img
-          className="characterImages"
-          src={iceManPic}
-          alt="Ice Man Picture"
-        />
+      <div>
+        <figure>
+          <img
+            className="characterImages"
+            src={maverickPic}
+            alt="Maverick Picture"
+          />
+          <figcaption>Maverick</figcaption>
+        </figure>
+        <figure>
+          <img
+            className="characterImages"
+            src={iceManPic}
+            alt="Ice Man Picture"
+          />
+          <figcaption>Ice Man</figcaption>
+        </figure>
 
-        <img className="characterImages" src={wizardPic} alt="Wizard Picture" />
+        <figure>
+          <img
+            className="characterImages"
+            src={wizardPic}
+            alt="Wizard Picture"
+          />
+          <figcaption>Wizard</figcaption>
+        </figure>
+        <Link to="/">Return to Home page</Link>
       </div>
 
       <div className="whereIsMaverickImageDiv">
-        <img className="whereIsMaverickImage" src={whereIsMaverickImage} alt="Wizard Picture" />
+        <img
+          className="whereIsMaverickImage"
+          src={whereIsMaverickImage}
+          alt="Wizard Picture"
+        />
       </div>
     </div>
   );

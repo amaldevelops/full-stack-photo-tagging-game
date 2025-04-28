@@ -13,6 +13,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+div {
+  display: flex;
+  gap: 16px; /* space between figures */
+  justify-content: center; /* optional: center them */
+  flex-wrap: wrap; /* optional: wrap on small screens */
+}
+
+figure {
+  text-align: center; /* center caption under image */
+  margin: 0; /* remove default figure margin */
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -68,17 +80,20 @@ button:focus-visible {
 }
 
 .characterImages {
-  width: 5rem;
-  height: 8rem;
+  width: auto;
+  height: 100px;
+  display: block;
 }
 
 .whereIsMaverickImage {
-  width: 100rem;
-  height: 50rem;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .whereIsMaverickImageDiv {
   border: 2px solid #000000;
-  width: 100rem;
-  height: 50rem;
+  width: 100%;
+  max-width: 90vw; /* 90% of the viewport width */
+  margin: 0 auto; /* center the div horizontally */
 }
