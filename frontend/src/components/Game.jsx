@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 
 import maverickPic from "../assets/images/maverick.png";
 import iceManPic from "../assets/images/ice-man.png";
@@ -7,6 +8,12 @@ import whereIsMaverickImage from "../assets/images/wheres-maverick-image.jpg";
 import Home from "../assets/images/home-icon.svg";
 
 function Game() {
+  const [cssColorChange, SetCssColorChange] = useState("correctSelection");
+
+  function userSelections(cssClassName) {
+    SetCssColorChange(cssClassName);
+  }
+
   return (
     <div>
       <div>
@@ -15,7 +22,10 @@ function Game() {
       </div>
 
       <div>
-        <figure>
+        <button onClick={() => userSelections("inCorrectSelection")}>
+          Change Color
+        </button>
+        <figure className={cssColorChange}>
           <img
             className="characterImages"
             src={maverickPic}
@@ -25,7 +35,7 @@ function Game() {
             <strong>Maverick</strong>
           </figcaption>
         </figure>
-        <figure>
+        <figure className={cssColorChange}>
           <img
             className="characterImages"
             src={iceManPic}
@@ -36,7 +46,7 @@ function Game() {
           </figcaption>
         </figure>
 
-        <figure>
+        <figure className={cssColorChange}>
           <img
             className="characterImages"
             src={wizardPic}

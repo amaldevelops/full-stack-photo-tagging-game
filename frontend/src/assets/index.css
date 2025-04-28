@@ -97,3 +97,14 @@ button:focus-visible {
   max-width: 90vw; /* 90% of the viewport width */
   margin: 0 auto; /* center the div horizontally */
 }
+
+.correctSelection{
+  background-color: #41c90f;
+  
+}
+
+.inCorrectSelection{
+  background-color: #ee0606;
+  
+}
+
