@@ -4,11 +4,15 @@ import maverickPic from "../assets/images/maverick.png";
 import iceManPic from "../assets/images/ice-man.png";
 import wizardPic from "../assets/images/wizard.png";
 import whereIsMaverickImage from "../assets/images/wheres-maverick-image.jpg";
+import Home from "../assets/images/home-icon.svg";
 
 function Game() {
   return (
     <div>
-      <h1>Where's Maverick (A photo tagging Game)</h1>
+      <div>
+        <h1>Where's Maverick (A photo tagging Game)</h1>
+        <p>Try to find Maverick, Ice Man and Wizard as soon as possible !</p>
+      </div>
 
       <div>
         <figure>
@@ -17,7 +21,9 @@ function Game() {
             src={maverickPic}
             alt="Maverick Picture"
           />
-          <figcaption>Maverick</figcaption>
+          <figcaption>
+            <strong>Maverick</strong>
+          </figcaption>
         </figure>
         <figure>
           <img
@@ -25,7 +31,9 @@ function Game() {
             src={iceManPic}
             alt="Ice Man Picture"
           />
-          <figcaption>Ice Man</figcaption>
+          <figcaption>
+            <strong>Ice Man</strong>
+          </figcaption>
         </figure>
 
         <figure>
@@ -34,9 +42,20 @@ function Game() {
             src={wizardPic}
             alt="Wizard Picture"
           />
-          <figcaption>Wizard</figcaption>
+          <figcaption>
+            {" "}
+            <strong>Wizard</strong>
+          </figcaption>
         </figure>
-        <Link to="/">Return to Home page</Link>
+
+        <Link to="/">
+          <figure>
+            <img className="characterImages" src={Home} alt="Home Picture" />
+            <figcaption>
+              <strong>Return Home</strong>
+            </figcaption>
+          </figure>
+        </Link>
       </div>
 
       <div className="whereIsMaverickImageDiv">
