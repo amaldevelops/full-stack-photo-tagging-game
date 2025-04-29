@@ -94,17 +94,15 @@ button:focus-visible {
 .whereIsMaverickImageDiv {
   border: 2px solid #000000;
   width: 100%;
-  max-width: 90vw; /* 90% of the viewport width */
+  max-width: 1920px;
+  max-height: 1080px;
   margin: 0 auto; /* center the div horizontally */
 }
 
-.correctSelection{
+.correctSelection {
   background-color: #41c90f;
-  
 }
 
-.inCorrectSelection{
+.inCorrectSelection {
   background-color: #ee0606;
-  
 }
-

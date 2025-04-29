@@ -14,7 +14,20 @@ function Game() {
     height: 0,
   });
 
+  const [coords, setCoords] = useState(null);
+  const [normalizedCoords, setNormalizedCoords] = useState({
+    x: 0,
+    y: 0,
+  });
+
   const imgRef = useRef(null);
+
+  // Store mavericks's normalized coordinates based on original image dimensions (1920x1080)
+  // These are the coordinates for maverick when the image is at full resolution.
+  const maverickNormalized = {
+    x: 1100 / 1920, // 1100px / 1920px width of the image
+    y: 380 / 1080, // 380px / 1080px height of the image
+  };
 
   useEffect(() => {
     const img = imgRef.current;
@@ -39,23 +52,39 @@ function Game() {
     };
   }, []);
 
-  // In HTML Image maps The coords for a rectangle are defined as:
-  // x1,y1,x2,y2
-  // x1,y1 are the coordinates of the top-left corner of the rectangle.
-  // x2,y2 are the coordinates of the bottom-right corner of the rectangle.
-  // Maverick: 624, 240,633, 267
-  // Ice Man:
-  // Wizard:
-  const [coords, setCoords] = useState(null);
-
   function userSelections(cssClassName) {
     SetCssColorChange(cssClassName);
   }
 
   const handleImageClick = (e) => {
-    const { offsetX, offsetY } = e.nativeEvent; // Get coordinates relative to the image
+    const { left, top } = imgRef.current.getBoundingClientRect();
+    const { clientX, clientY } = e.nativeEvent;
+
+    // Calculate coordinates relative to the image
+    const offsetX = clientX - left;
+    const offsetY = clientY - top;
+
     setCoords({ x: offsetX, y: offsetY });
+
+    // Normalize the user's click coordinates
+    const normalizedX = offsetX / imageDimensions.width;
+    const normalizedY = offsetY / imageDimensions.height;
+
+    setNormalizedCoords({ x: normalizedX, y: normalizedY });
+
     console.log(`Clicked at: (${offsetX}, ${offsetY})`);
+    console.log(`Normalized Click Coordinates: (${normalizedX}, ${normalizedY})`);
+
+    // Check if the user clicked near mavericks's normalized position
+    const tolerance = 0.05; // Tolerance for "near" (5% of image size)
+    if (
+      Math.abs(normalizedX - maverickNormalized.x) < tolerance &&
+      Math.abs(normalizedY - maverickNormalized.y) < tolerance
+    ) {
+      console.log("You found maverick!");
+    } else {
+      console.log("Try again!");
+    }
   };
 
   return (
@@ -69,18 +98,22 @@ function Game() {
             <p>
               Image Dimensions: {imageDimensions.width}x{imageDimensions.height}
             </p>
+            <p>
+              Normalized Coordinates X:{normalizedCoords.x} Y:{normalizedCoords.y}
+            </p>
           </div>
         )}
       </div>
       <div>
         <h1>Where's Maverick (A photo tagging Game)</h1>
-        <p>Try to find Maverick, Ice Man and Wizard as soon as possible !</p>
+        <p>Try to find Maverick, Ice Man, and Wizard as soon as possible!</p>
       </div>
 
       <div>
         <button onClick={() => userSelections("correctSelection")}>
           Change Color
         </button>
+
         <figure className={cssColorChange}>
           <img
             className="characterImages"
@@ -129,7 +162,7 @@ function Game() {
         <img
           className="whereIsMaverickImage"
           src={whereIsMaverickImage}
-          alt="Wizard Picture"
+          alt="Where's Maverick"
           useMap="#lookupMap"
           onClick={handleImageClick}
           ref={imgRef}
@@ -137,7 +170,7 @@ function Game() {
         <map name="lookupMap">
           <area
             shape="rect"
-            coords="624, 240,633, 267 "
+            coords="624, 240,633, 267"
             onClick={() => userSelections("correctSelection")}
           ></area>
         </map>
