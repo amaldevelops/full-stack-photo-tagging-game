@@ -25,6 +25,13 @@ function Game() {
     y: 0,
   });
 
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const [menuPosition, setMenuPosition] = useState({
+    x: 0,
+    y: 0,
+  });
+
   const imgRef = useRef(null);
 
   // Store mavericks's normalized coordinates based on original image dimensions (1920x1080)
@@ -71,6 +78,10 @@ function Game() {
     SetCssColorChange(cssClassName);
   }
 
+  const hideMenu = () => {
+    setMenuVisible(false);
+  };
+
   const handleImageClick = (e) => {
     const { left, top } = imgRef.current.getBoundingClientRect();
     const { clientX, clientY } = e.nativeEvent;
@@ -91,6 +102,10 @@ function Game() {
     console.log(
       `Normalized Click Coordinates: (${normalizedX}, ${normalizedY})`
     );
+
+    setMenuPosition({ x: offsetX, y: offsetY });
+
+    setMenuVisible(true);
 
     // Check if the user clicked near mavericks's normalized position
     const tolerance = 0.05; // Tolerance for "near" (5% of image size)
@@ -121,7 +136,8 @@ function Game() {
     <div>
       <div>
         {coords && (
-          <div>
+          <div className="divBorder">
+            <h3>Game Technical Info</h3>
             <p>
               Selected Coordinates: {coords.x}, {coords.y}
             </p>
@@ -205,6 +221,33 @@ function Game() {
             onClick={() => userSelections("correctSelection")}
           ></area>
         </map>
+      </div>
+
+      <div>
+        {menuVisible && (
+          <div
+            className="menu"
+            style={{
+              position: "absolute",
+              left: `${menuPosition.x + 1}px`, // 10px offset to the right
+              top: `${menuPosition.y + 1}px`, // 10px offset below
+              backgroundColor: "white",
+              border: "1px solid #ccc",
+              padding: "1px",
+              borderRadius: "5px",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+            }}
+          >
+            <h3>Menu</h3>
+            <p>
+              You clicked coordinates ({coords.x},{coords.y})
+            </p>
+            <button>Maverick</button>
+            <button>Ice Man</button>
+            <button>Wizard</button>
+            <button onClick={hideMenu}>Close Menu</button>
+          </div>
+        )}
       </div>
     </div>
   );

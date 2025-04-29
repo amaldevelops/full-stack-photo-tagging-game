@@ -106,3 +106,10 @@ button:focus-visible {
 .inCorrectSelection {
   background-color: #ee0606;
 }
+
+.divBorder
+{
+  border: 2px solid #000000;
+
+}
+
