@@ -32,6 +32,8 @@ function Game() {
     y: 0,
   });
 
+  const [userSelection, setUserSelection] = useState();
+
   const imgRef = useRef(null);
 
   // Store mavericks's normalized coordinates based on original image dimensions (1920x1080)
@@ -76,6 +78,12 @@ function Game() {
 
   function userSelections(cssClassName) {
     SetCssColorChange(cssClassName);
+  }
+
+  function userClicks(characterName) {
+    setUserSelection(characterName);
+    console.log(userSelection);
+    SetCssColorChange("correctSelection");
   }
 
   const hideMenu = () => {
@@ -242,9 +250,27 @@ function Game() {
             <p>
               You clicked coordinates ({coords.x},{coords.y})
             </p>
-            <button>Maverick</button>
-            <button>Ice Man</button>
-            <button>Wizard</button>
+            <button
+              onClick={() => {
+                userClicks("maverick");
+              }}
+            >
+              Maverick
+            </button>
+            <button
+              onClick={() => {
+                userClicks("iceman");
+              }}
+            >
+              Ice Man
+            </button>
+            <button
+              onClick={() => {
+                userClicks("wizard");
+              }}
+            >
+              Wizard
+            </button>
             <button onClick={hideMenu}>Close Menu</button>
           </div>
         )}
