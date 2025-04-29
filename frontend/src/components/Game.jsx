@@ -8,7 +8,12 @@ import whereIsMaverickImage from "../assets/images/wheres-maverick-image.jpg";
 import Home from "../assets/images/home-icon.svg";
 
 function Game() {
-  const [cssColorChange, SetCssColorChange] = useState("");
+  const [cssColorChange, SetCssColorChange] = useState({
+    maverick: "",
+    iceman: "",
+    wizard: "",
+  });
+
   const [imageDimensions, setImageDimensions] = useState({
     width: 0,
     height: 0,
@@ -27,6 +32,16 @@ function Game() {
   const maverickNormalized = {
     x: 1100 / 1920, // 1100px / 1920px width of the image
     y: 380 / 1080, // 380px / 1080px height of the image
+  };
+
+  const iceManNormalized = {
+    x: 207 / 1920, // 207px / 1920px width of the image
+    y: 383 / 1080, // 383px / 1080px height of the image
+  };
+
+  const wizardNormalized = {
+    x: 519 / 1920, // 1100px / 1920px width of the image
+    y: 381 / 1080, // 380px / 1080px height of the image
   };
 
   useEffect(() => {
@@ -73,7 +88,9 @@ function Game() {
     setNormalizedCoords({ x: normalizedX, y: normalizedY });
 
     console.log(`Clicked at: (${offsetX}, ${offsetY})`);
-    console.log(`Normalized Click Coordinates: (${normalizedX}, ${normalizedY})`);
+    console.log(
+      `Normalized Click Coordinates: (${normalizedX}, ${normalizedY})`
+    );
 
     // Check if the user clicked near mavericks's normalized position
     const tolerance = 0.05; // Tolerance for "near" (5% of image size)
@@ -82,6 +99,19 @@ function Game() {
       Math.abs(normalizedY - maverickNormalized.y) < tolerance
     ) {
       console.log("You found maverick!");
+      SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
+    } else if (
+      Math.abs(normalizedX - iceManNormalized.x) < tolerance &&
+      Math.abs(normalizedY - iceManNormalized.y) < tolerance
+    ) {
+      console.log("You found Iceman!");
+      SetCssColorChange({ ...cssColorChange, iceman: "correctSelection" });
+    } else if (
+      Math.abs(normalizedX - wizardNormalized.x) < tolerance &&
+      Math.abs(normalizedY - wizardNormalized.y) < tolerance
+    ) {
+      console.log("You found Wizard!");
+      SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
     } else {
       console.log("Try again!");
     }
@@ -99,7 +129,8 @@ function Game() {
               Image Dimensions: {imageDimensions.width}x{imageDimensions.height}
             </p>
             <p>
-              Normalized Coordinates X:{normalizedCoords.x} Y:{normalizedCoords.y}
+              Normalized Coordinates X:{normalizedCoords.x} Y:
+              {normalizedCoords.y}
             </p>
           </div>
         )}
@@ -110,11 +141,11 @@ function Game() {
       </div>
 
       <div>
-        <button onClick={() => userSelections("correctSelection")}>
+        {/* <button onClick={() => userSelections("correctSelection")}>
           Change Color
-        </button>
+        </button> */}
 
-        <figure className={cssColorChange}>
+        <figure className={cssColorChange.maverick}>
           <img
             className="characterImages"
             src={maverickPic}
@@ -124,7 +155,7 @@ function Game() {
             <strong>Maverick</strong>
           </figcaption>
         </figure>
-        <figure className={cssColorChange}>
+        <figure className={cssColorChange.iceman}>
           <img
             className="characterImages"
             src={iceManPic}
@@ -135,7 +166,7 @@ function Game() {
           </figcaption>
         </figure>
 
-        <figure className={cssColorChange}>
+        <figure className={cssColorChange.wizard}>
           <img
             className="characterImages"
             src={wizardPic}
