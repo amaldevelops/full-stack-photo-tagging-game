@@ -83,7 +83,8 @@ function Game() {
   function userClicks(characterName) {
     setUserSelection(characterName);
     console.log(userSelection);
-    SetCssColorChange("correctSelection");
+    // SetCssColorChange("correctSelection");
+    handleImageClick();
   }
 
   const hideMenu = () => {
@@ -237,8 +238,8 @@ function Game() {
             className="menu"
             style={{
               position: "absolute",
-              left: `${menuPosition.x + 1}px`, // 10px offset to the right
-              top: `${menuPosition.y + 1}px`, // 10px offset below
+              left: `${menuPosition.x + 1}px`, // 1px offset to the right
+              top: `${menuPosition.y + 1}px`, // 1px offset below
               backgroundColor: "white",
               border: "1px solid #ccc",
               padding: "1px",
