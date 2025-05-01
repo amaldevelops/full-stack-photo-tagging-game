@@ -92,18 +92,21 @@ function Game() {
     // Check if the user clicked near mavericks's normalized position
     const tolerance = 0.05; // Tolerance for "near" (5% of image size)
     if (
+      characterName === "maverick" &&
       Math.abs(normalizedCoords.x - maverickNormalized.x) < tolerance &&
       Math.abs(normalizedCoords.y - maverickNormalized.y) < tolerance
     ) {
       console.log("You found maverick!");
       SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
     } else if (
+      characterName === "iceman" &&
       Math.abs(normalizedCoords.x - iceManNormalized.x) < tolerance &&
       Math.abs(normalizedCoords.y - iceManNormalized.y) < tolerance
     ) {
       console.log("You found Iceman!");
       SetCssColorChange({ ...cssColorChange, iceman: "correctSelection" });
     } else if (
+      characterName === "wizard" &&
       Math.abs(normalizedCoords.x - wizardNormalized.x) < tolerance &&
       Math.abs(normalizedCoords.y - wizardNormalized.y) < tolerance
     ) {
