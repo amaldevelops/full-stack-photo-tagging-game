@@ -113,3 +113,23 @@ button:focus-visible {
 
 }
 
+
+.menuButtonsDiv
+{
+  display:flex;
+  flex-direction: column;
+  gap:5px;
+
+}
+
+/* styles.css or whatever your CSS file is called */
+.menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 1px;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+

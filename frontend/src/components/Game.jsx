@@ -113,7 +113,9 @@ function Game() {
       console.log("You found Wizard!");
       SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
     } else {
-      console.log("Try again!");
+      alert(
+        "Please Try again! Character: " + characterName + " is Incorrect !"
+      );
     }
   }
 
@@ -243,42 +245,39 @@ function Game() {
           <div
             className="menu"
             style={{
-              position: "absolute",
-              left: `${menuPosition.x + 10}px`, // 10px offset to the right
-              top: `${menuPosition.y + 500}px`, // 500px offset below
-              backgroundColor: "white",
-              border: "1px solid #ccc",
-              padding: "1px",
-              borderRadius: "15px",
-              boxShadow: "0 10px 10px rgba(0,0,0,0.1)",
+              left: `${menuPosition.x + 10}px`,
+              top: `${menuPosition.y + 500}px`,
             }}
           >
-            <h3>Menu</h3>
-            <p>
-              You clicked coordinates ({coords.x},{coords.y})
-            </p>
-            <button
-              onClick={() => {
-                userClicks("maverick");
-              }}
-            >
-              Maverick
-            </button>
-            <button
-              onClick={() => {
-                userClicks("iceman");
-              }}
-            >
-              Ice Man
-            </button>
-            <button
-              onClick={() => {
-                userClicks("wizard");
-              }}
-            >
-              Wizard
-            </button>
-            <button onClick={hideMenu}>Close Menu</button>
+            <div className="menuButtonsDiv">
+              <h3>Choose the Character</h3>
+
+              <p>
+                You clicked coordinates ({coords.x},{coords.y})
+              </p>
+              <button
+                onClick={() => {
+                  userClicks("maverick");
+                }}
+              >
+                Maverick
+              </button>
+              <button
+                onClick={() => {
+                  userClicks("iceman");
+                }}
+              >
+                Ice Man
+              </button>
+              <button
+                onClick={() => {
+                  userClicks("wizard");
+                }}
+              >
+                Wizard
+              </button>
+              <button onClick={hideMenu}>Close Menu</button>
+            </div>
           </div>
         )}
       </div>
