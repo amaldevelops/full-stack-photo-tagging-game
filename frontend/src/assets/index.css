@@ -107,24 +107,19 @@ button:focus-visible {
   background-color: #ee0606;
 }
 
-.divBorder
-{
+.divBorder {
   border: 2px solid #000000;
-
 }
 
-
-.menuButtonsDiv
-{
-  display:flex;
+.menuButtonsDiv {
+  display: flex;
   flex-direction: column;
-  gap:5px;
+  gap: 5px;
 
   flex-wrap: wrap; /* Enables wrapping if needed */
   max-width: 350px; /* Or whatever width you want */
   word-wrap: break-word; /* For long words */
   overflow-wrap: break-word; /* Safer for modern browsers */
-
 }
 
 /* styles.css or whatever your CSS file is called */
@@ -136,5 +131,3 @@ button:focus-visible {
   border-radius: 15px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
-
-

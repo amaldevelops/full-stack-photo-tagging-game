@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 
 import maverickPic from "../assets/images/maverick.png";
@@ -14,12 +14,22 @@ function Game() {
     wizard: "",
   });
 
+  // This will record the current status of the game
+  const [gameStatus, setGameStatus] = useState({
+    maverick: "notFound",
+    iceman: "notFound",
+    wizard: "notFound",
+    currentStatus: "start",
+  });
+
   const [imageDimensions, setImageDimensions] = useState({
     width: 0,
     height: 0,
   });
 
   const [coords, setCoords] = useState(null);
+
+  //Following will set the normalized coordinates
   const [normalizedCoords, setNormalizedCoords] = useState({
     x: 0,
     y: 0,
@@ -32,10 +42,10 @@ function Game() {
     y: 0,
   });
 
+  // This will record the relevant user selections
   const [userSelection, setUserSelection] = useState();
 
   const imgRef = useRef(null);
-  // console.log(imgRef.current)
 
   // Store mavericks's normalized coordinates based on original image dimensions (1920x1080)
   // These are the coordinates for maverick when the image is at full resolution.
@@ -60,7 +70,6 @@ function Game() {
 
     const handleLoad = () => {
       const { width, height } = img.getBoundingClientRect();
-      // console.log(img.getBoundingClientRect())
       setImageDimensions({
         width: Math.round(width),
         height: Math.round(height),
@@ -78,16 +87,9 @@ function Game() {
     };
   }, []);
 
-  function userSelections(cssClassName) {
-    SetCssColorChange(cssClassName);
-  }
-
   function userClicks(characterName) {
     setUserSelection(characterName);
     console.log(userSelection);
-    // console.log()
-    // SetCssColorChange("correctSelection");
-    // handleImageClick();
 
     // Check if the user clicked near mavericks's normalized position
     const tolerance = 0.05; // Tolerance for "near" (5% of image size)
@@ -97,7 +99,9 @@ function Game() {
       Math.abs(normalizedCoords.y - maverickNormalized.y) < tolerance
     ) {
       console.log("You found maverick!");
+      setGameStatus({ ...gameStatus, maverick: "found" });
       SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
+      console.log(gameStatus);
     } else if (
       characterName === "iceman" &&
       Math.abs(normalizedCoords.x - iceManNormalized.x) < tolerance &&
@@ -105,6 +109,8 @@ function Game() {
     ) {
       console.log("You found Iceman!");
       SetCssColorChange({ ...cssColorChange, iceman: "correctSelection" });
+      setGameStatus({ ...gameStatus, iceman: "found" });
+      console.log(gameStatus);
     } else if (
       characterName === "wizard" &&
       Math.abs(normalizedCoords.x - wizardNormalized.x) < tolerance &&
@@ -112,10 +118,16 @@ function Game() {
     ) {
       console.log("You found Wizard!");
       SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
+      setGameStatus({ ...gameStatus, wizard: "found" });
     } else {
-      alert(
+      console.log(
         "Please Try again! Character: " + characterName + " is Incorrect !"
       );
+      SetCssColorChange({
+        ...cssColorChange,
+        [characterName]: "inCorrectSelection",
+      });
+      console.log(cssColorChange);
     }
   }
 
@@ -174,10 +186,6 @@ function Game() {
       </div>
 
       <div>
-        {/* <button onClick={() => userSelections("correctSelection")}>
-          Change Color
-        </button> */}
-
         <figure className={cssColorChange.maverick}>
           <img
             className="characterImages"
