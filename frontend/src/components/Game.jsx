@@ -253,7 +253,7 @@ function Game() {
               <h3>Choose the Character</h3>
 
               <p>
-                You clicked coordinates ({coords.x},{coords.y})
+                You clicked coordinates (X:{coords.x} Y:{coords.y})
               </p>
               <button
                 onClick={() => {

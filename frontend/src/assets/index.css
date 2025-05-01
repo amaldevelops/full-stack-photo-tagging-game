@@ -120,6 +120,11 @@ button:focus-visible {
   flex-direction: column;
   gap:5px;
 
+  flex-wrap: wrap; /* Enables wrapping if needed */
+  max-width: 350px; /* Or whatever width you want */
+  word-wrap: break-word; /* For long words */
+  overflow-wrap: break-word; /* Safer for modern browsers */
+
 }
 
 /* styles.css or whatever your CSS file is called */
