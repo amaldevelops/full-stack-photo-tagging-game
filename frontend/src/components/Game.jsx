@@ -85,8 +85,33 @@ function Game() {
   function userClicks(characterName) {
     setUserSelection(characterName);
     console.log(userSelection);
+    // console.log()
     // SetCssColorChange("correctSelection");
-    handleImageClick();
+    // handleImageClick();
+
+    // Check if the user clicked near mavericks's normalized position
+    const tolerance = 0.05; // Tolerance for "near" (5% of image size)
+    if (
+      Math.abs(normalizedCoords.x - maverickNormalized.x) < tolerance &&
+      Math.abs(normalizedCoords.y - maverickNormalized.y) < tolerance
+    ) {
+      console.log("You found maverick!");
+      SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
+    } else if (
+      Math.abs(normalizedCoords.x - iceManNormalized.x) < tolerance &&
+      Math.abs(normalizedCoords.y - iceManNormalized.y) < tolerance
+    ) {
+      console.log("You found Iceman!");
+      SetCssColorChange({ ...cssColorChange, iceman: "correctSelection" });
+    } else if (
+      Math.abs(normalizedCoords.x - wizardNormalized.x) < tolerance &&
+      Math.abs(normalizedCoords.y - wizardNormalized.y) < tolerance
+    ) {
+      console.log("You found Wizard!");
+      SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
+    } else {
+      console.log("Try again!");
+    }
   }
 
   const hideMenu = () => {
@@ -117,30 +142,6 @@ function Game() {
     setMenuPosition({ x: offsetX, y: offsetY });
 
     setMenuVisible(true);
-
-    // Check if the user clicked near mavericks's normalized position
-    const tolerance = 0.05; // Tolerance for "near" (5% of image size)
-    if (
-      Math.abs(normalizedX - maverickNormalized.x) < tolerance &&
-      Math.abs(normalizedY - maverickNormalized.y) < tolerance
-    ) {
-      console.log("You found maverick!");
-      SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
-    } else if (
-      Math.abs(normalizedX - iceManNormalized.x) < tolerance &&
-      Math.abs(normalizedY - iceManNormalized.y) < tolerance
-    ) {
-      console.log("You found Iceman!");
-      SetCssColorChange({ ...cssColorChange, iceman: "correctSelection" });
-    } else if (
-      Math.abs(normalizedX - wizardNormalized.x) < tolerance &&
-      Math.abs(normalizedY - wizardNormalized.y) < tolerance
-    ) {
-      console.log("You found Wizard!");
-      SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
-    } else {
-      console.log("Try again!");
-    }
   };
 
   return (
