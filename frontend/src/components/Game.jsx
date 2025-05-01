@@ -240,13 +240,13 @@ function Game() {
             className="menu"
             style={{
               position: "absolute",
-              left: `${menuPosition.x + 1}px`, // 1px offset to the right
-              top: `${menuPosition.y + 1}px`, // 1px offset below
+              left: `${menuPosition.x + 10}px`, // 10px offset to the right
+              top: `${menuPosition.y + 500}px`, // 500px offset below
               backgroundColor: "white",
               border: "1px solid #ccc",
               padding: "1px",
-              borderRadius: "5px",
-              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+              borderRadius: "15px",
+              boxShadow: "0 10px 10px rgba(0,0,0,0.1)",
             }}
           >
             <h3>Menu</h3>
