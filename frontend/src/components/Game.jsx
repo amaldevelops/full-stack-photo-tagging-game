@@ -64,6 +64,19 @@ function Game() {
     y: 381 / 1080, // 380px / 1080px height of the image
   };
 
+  function gameState() {
+    if (
+      gameStatus.maverick == "found" &&
+      gameStatus.iceman == "found" &&
+      gameStatus.wizard == "found"
+    ) {
+      console.log("Game Ended");
+      setGameStatus({ ...gameStatus, currentStatus: "gameOver" });
+    } else {
+      console.log("Next Selection....");
+    }
+  }
+
   useEffect(() => {
     const img = imgRef.current;
     if (!img) return;
@@ -102,7 +115,7 @@ function Game() {
       setGameStatus({ ...gameStatus, maverick: "found" });
       SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
       setMenuVisible(false);
-      // hideMenu()
+      gameState();
 
       console.log(gameStatus);
     } else if (
@@ -115,6 +128,7 @@ function Game() {
       setGameStatus({ ...gameStatus, iceman: "found" });
       console.log(gameStatus);
       setMenuVisible(false);
+      gameState();
     } else if (
       characterName === "wizard" &&
       Math.abs(normalizedCoords.x - wizardNormalized.x) < tolerance &&
@@ -124,6 +138,7 @@ function Game() {
       SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
       setGameStatus({ ...gameStatus, wizard: "found" });
       setMenuVisible(false);
+      gameState();
     } else {
       console.log(
         "Please Try again! Character: " + characterName + " is Incorrect !"
@@ -134,6 +149,7 @@ function Game() {
       });
       console.log(cssColorChange);
       setMenuVisible(false);
+      gameState();
     }
   }
 
