@@ -35,6 +35,7 @@ function Game() {
   const [userSelection, setUserSelection] = useState();
 
   const imgRef = useRef(null);
+  // console.log(imgRef.current)
 
   // Store mavericks's normalized coordinates based on original image dimensions (1920x1080)
   // These are the coordinates for maverick when the image is at full resolution.
@@ -59,6 +60,7 @@ function Game() {
 
     const handleLoad = () => {
       const { width, height } = img.getBoundingClientRect();
+      // console.log(img.getBoundingClientRect())
       setImageDimensions({
         width: Math.round(width),
         height: Math.round(height),
@@ -223,13 +225,13 @@ function Game() {
           onClick={handleImageClick}
           ref={imgRef}
         />
-        <map name="lookupMap">
+        {/* <map name="lookupMap">
           <area
             shape="rect"
             coords="624, 240,633, 267"
             onClick={() => userSelections("correctSelection")}
           ></area>
-        </map>
+        </map> */}
       </div>
 
       <div>
