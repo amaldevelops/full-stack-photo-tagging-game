@@ -71,7 +71,7 @@ function Game() {
       gameStatus.wizard == "found"
     ) {
       console.log("Game Ended");
-      setGameStatus({ ...gameStatus, currentStatus: "gameOver" });
+      setGameStatus((prev) => ({ ...prev, currentStatus: "gameOver" }));
     } else {
       console.log("Next Selection....");
     }
@@ -112,21 +112,18 @@ function Game() {
       Math.abs(normalizedCoords.y - maverickNormalized.y) < tolerance
     ) {
       console.log("You found maverick!");
-      setGameStatus({ ...gameStatus, maverick: "found" });
-      SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
+      setGameStatus((prev) => ({ ...prev, maverick: "found" }));
+      SetCssColorChange((prev) => ({ ...prev, maverick: "correctSelection" }));
       setMenuVisible(false);
       gameState();
-
-      console.log(gameStatus);
     } else if (
       characterName === "iceman" &&
       Math.abs(normalizedCoords.x - iceManNormalized.x) < tolerance &&
       Math.abs(normalizedCoords.y - iceManNormalized.y) < tolerance
     ) {
       console.log("You found Iceman!");
-      SetCssColorChange({ ...cssColorChange, iceman: "correctSelection" });
-      setGameStatus({ ...gameStatus, iceman: "found" });
-      console.log(gameStatus);
+      SetCssColorChange((prev) => ({ ...prev, iceman: "correctSelection" }));
+      setGameStatus((prev) => ({ ...prev, iceman: "found" }));
       setMenuVisible(false);
       gameState();
     } else if (
@@ -135,18 +132,18 @@ function Game() {
       Math.abs(normalizedCoords.y - wizardNormalized.y) < tolerance
     ) {
       console.log("You found Wizard!");
-      SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
-      setGameStatus({ ...gameStatus, wizard: "found" });
+      SetCssColorChange((prev) => ({ ...prev, wizard: "correctSelection" }));
+      setGameStatus((prev) => ({ ...prev, wizard: "found" }));
       setMenuVisible(false);
       gameState();
     } else {
       console.log(
         "Please Try again! Character: " + characterName + " is Incorrect !"
       );
-      SetCssColorChange({
-        ...cssColorChange,
+      SetCssColorChange((prev) => ({
+        ...prev,
         [characterName]: "inCorrectSelection",
-      });
+      }));
       console.log(cssColorChange);
       setMenuVisible(false);
       gameState();
@@ -182,6 +179,10 @@ function Game() {
 
     setMenuVisible(true);
   };
+
+  useEffect(() => {
+    console.log("Game Status:", gameStatus);
+  }, [gameStatus]);
 
   return (
     <div>
