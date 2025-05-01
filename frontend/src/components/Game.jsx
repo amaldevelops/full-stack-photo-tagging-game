@@ -8,6 +8,8 @@ import whereIsMaverickImage from "../assets/images/wheres-maverick-image.jpg";
 import Home from "../assets/images/home-icon.svg";
 
 function Game() {
+  const [seconds, setSeconds] = useState(0);
+
   const [cssColorChange, SetCssColorChange] = useState({
     maverick: "",
     iceman: "",
@@ -63,6 +65,12 @@ function Game() {
     x: 519 / 1920, // 1100px / 1920px width of the image
     y: 381 / 1080, // 380px / 1080px height of the image
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => setSeconds((seconds) => seconds + 1), 1000);
+    // console.log(seconds)
+    return () => clearInterval(timer);
+  }, [seconds]);
 
   function gameState() {
     if (
@@ -203,11 +211,14 @@ function Game() {
           </div>
         )}
       </div>
-      <div>
+      <div className="IntroDiv">
         <h1>Where's Maverick (A photo tagging Game)</h1>
         <p>Try to find Maverick, Ice Man, and Wizard as soon as possible!</p>
       </div>
-
+      <div className="divBorder">
+        <h3>Game Timer : </h3>
+        <h4>{seconds}</h4>
+      </div>
       <div>
         <figure className={cssColorChange.maverick}>
           <img
