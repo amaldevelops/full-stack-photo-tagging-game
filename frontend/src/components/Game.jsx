@@ -101,6 +101,9 @@ function Game() {
       console.log("You found maverick!");
       setGameStatus({ ...gameStatus, maverick: "found" });
       SetCssColorChange({ ...cssColorChange, maverick: "correctSelection" });
+      setMenuVisible(false);
+      // hideMenu()
+
       console.log(gameStatus);
     } else if (
       characterName === "iceman" &&
@@ -111,6 +114,7 @@ function Game() {
       SetCssColorChange({ ...cssColorChange, iceman: "correctSelection" });
       setGameStatus({ ...gameStatus, iceman: "found" });
       console.log(gameStatus);
+      setMenuVisible(false);
     } else if (
       characterName === "wizard" &&
       Math.abs(normalizedCoords.x - wizardNormalized.x) < tolerance &&
@@ -119,6 +123,7 @@ function Game() {
       console.log("You found Wizard!");
       SetCssColorChange({ ...cssColorChange, wizard: "correctSelection" });
       setGameStatus({ ...gameStatus, wizard: "found" });
+      setMenuVisible(false);
     } else {
       console.log(
         "Please Try again! Character: " + characterName + " is Incorrect !"
@@ -128,6 +133,7 @@ function Game() {
         [characterName]: "inCorrectSelection",
       });
       console.log(cssColorChange);
+      setMenuVisible(false);
     }
   }
 
