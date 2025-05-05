@@ -2,6 +2,8 @@ import express, { urlencoded } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import mainRouter from "./routes/mainRouter.js";
+
 dotenv.config();
 
 const app = express();
@@ -13,9 +15,7 @@ app.use(express.json());
 
 app.use(urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.json("Hello from the backend");
-});
+app.use("/", mainRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port http://localhost:${port}`);
