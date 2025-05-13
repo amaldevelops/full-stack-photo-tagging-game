@@ -21,7 +21,7 @@ function gameOver(req, res, next) {
 }
 
 function leaderBoard(req, res, next) {
-  res.json("Leader Board");
+  res.json({amal:3,mave:11});
 }
 
 export { mainRoute, gameStart, gameRun, gameOver, leaderBoard };
