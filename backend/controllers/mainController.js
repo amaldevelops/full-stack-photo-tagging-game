@@ -3,7 +3,13 @@ function mainRoute(req, res, next) {
 }
 
 function gameStart(req, res, next) {
-  res.json("Start Game");
+  res.json(
+    `Game Started ! ${{
+      Maverick: process.env.MAVERICK,
+      Iceman: process.env.ICEMAN,
+      Wizard: process.env.WIZARD,
+    }}`
+  );
 }
 
 function gameRun(req, res, next) {
