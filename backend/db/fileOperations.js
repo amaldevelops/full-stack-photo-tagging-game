@@ -1,9 +1,9 @@
-import {promises as fs} from "fs";
+import { promises as fs } from "fs";
 import path from "path";
 
-async function readFile(fileName) {
+async function readLeaderBoard(fileName) {
   try {
-    const filePath=path.resolve("db",fileName);
+    const filePath = path.resolve("db", fileName);
     const data = await fs.readFile(filePath, "utf-8");
     console.log(data);
     return JSON.parse(data);
@@ -12,4 +12,16 @@ async function readFile(fileName) {
   }
 }
 
-export { readFile };
+async function writeToLeaderBoard(fileName, data) {
+  try {
+    const filePath = path.resolve("db", fileName);
+    const json = JSON.stringify(data, null, 2);
+
+    await fs.writeFile(filePath, json, "utf-8");
+    console.log("Scores saved successfully");
+  } catch (err) {
+    console.error("Error writing file:", err);
+  }
+}
+
+export { readLeaderBoard, writeToLeaderBoard };

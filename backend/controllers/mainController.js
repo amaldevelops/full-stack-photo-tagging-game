@@ -1,4 +1,4 @@
-import { readFile } from "../db/fileOperations.js";
+import { readLeaderBoard, writeToLeaderBoard } from "../db/fileOperations.js";
 
 function mainRoute(req, res, next) {
   res.json("All Backend Systems running OK!");
@@ -19,12 +19,15 @@ function gameRun(req, res, next) {
 }
 
 function gameOver(req, res, next) {
+  // res.json("Game Over");
+  const data = { name: "test", time: 44 };
+  writeToLeaderBoard("../db/leaderBoard.json", data);
   res.json("Game Over");
 }
 
 async function leaderBoard(req, res, next) {
   try {
-    const data = await readFile("../db/leaderBoard.json");
+    const data = await readLeaderBoard("../db/leaderBoard.json");
     console.log(data);
 
     res.status(200).json(data);
