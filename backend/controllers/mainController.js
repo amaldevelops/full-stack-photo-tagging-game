@@ -1,3 +1,5 @@
+import { readFile } from "../db/fileOperations.js";
+
 function mainRoute(req, res, next) {
   res.json("All Backend Systems running OK!");
 }
@@ -20,8 +22,16 @@ function gameOver(req, res, next) {
   res.json("Game Over");
 }
 
-function leaderBoard(req, res, next) {
-  res.json({amal:3,mave:11});
+async function leaderBoard(req, res, next) {
+  try {
+    const data = await readFile("../db/leaderBoard.json");
+    console.log(data);
+
+    res.status(200).json(data);
+  } catch (err) {
+    console.error("Error in leaderBoard", err);
+    res.status(500).json({ error: "failed to load leaderboard." });
+  }
 }
 
 export { mainRoute, gameStart, gameRun, gameOver, leaderBoard };

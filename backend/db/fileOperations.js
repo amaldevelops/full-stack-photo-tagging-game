@@ -1,13 +1,15 @@
-import fs from "fs";
+import {promises as fs} from "fs";
+import path from "path";
 
-function readFile(fileName) {
-  fs.readFile(fileName, "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(data);
-    }
-  });
+async function readFile(fileName) {
+  try {
+    const filePath=path.resolve("db",fileName);
+    const data = await fs.readFile(filePath, "utf-8");
+    console.log(data);
+    return JSON.parse(data);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export { readFile };
