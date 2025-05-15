@@ -1,51 +1,20 @@
 [
   {
     "name": "Alice",
-    "score": 100
+    "score": "100"
   },
   {
     "name": "Bob",
-    "score": 90
-  },
-  {
-    "name": "test2",
-    "time": 100
-  },
-  {
-    "name": "test2",
-    "time": 100
-  },
-  {
-    "name": "test2",
-    "time": 100
-  },
-  {
-    "name": "test2",
-    "time": 100
-  },
-  {
-    "name": "test2",
-    "time": 100
-  },
-  {
-    "name": "test2",
-    "time": 100
-  },
-  {
-    "name": "test2",
-    "time": 100
-  },
-  {
-    "name": "test2",
-    "time": 100
+    "score": "90"
   },
   {
     "name": "Awesome",
     "time": "100"
   },
+
   {
-    "name": "Awesome2",
-    "time": "300"
+    "name": "Yaayyy",
+    "time": "231"
   },
   {
     "name": "Yaayyy",

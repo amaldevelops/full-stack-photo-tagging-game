@@ -15,6 +15,17 @@ function gameStart(req, res, next) {
 }
 
 function gameRun(req, res, next) {
+try{
+
+  
+}
+
+catch(err)
+{
+console.error("Error")
+}
+  
+
   res.json("Game Run");
 }
 

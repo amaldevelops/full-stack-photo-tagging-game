@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
+import LeaderBoard from "./LeaderBoard.jsx";
 
 function Index() {
   const navigate = useNavigate();
@@ -15,6 +16,9 @@ function Index() {
         Start Game
       </button>
       {/* <Link to="/game">Game Start</Link> */}
+      <div>
+        <LeaderBoard />
+      </div>
     </div>
   );
 }
