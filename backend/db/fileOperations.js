@@ -12,15 +12,32 @@ async function readLeaderBoard(fileName) {
   }
 }
 
-async function writeToLeaderBoard(fileName, data) {
+async function writeToLeaderBoard(fileName, newEntry) {
   try {
     const filePath = path.resolve("db", fileName);
-    const json = JSON.stringify(data, null, 2);
+    let existingData = [];
 
-    await fs.writeFile(filePath, json, "utf-8");
-    console.log("Scores saved successfully");
+    try {
+      const fileContent = await fs.readFile(filePath, "utf-8");
+      existingData = JSON.parse(fileContent);
+
+      if (!Array.isArray(existingData)) {
+        throw new Error(
+          "Invalid data format:expected leaderboard.json to contain an Array "
+        );
+      }
+    } catch (err) {
+      if (err.code !== "ENOENT") throw err;
+    }
+
+    existingData.push(newEntry);
+
+    const updatedJson = JSON.stringify(existingData, null, 2);
+
+    await fs.writeFile(filePath, updatedJson, "utf-8");
+    console.log("Scores appended successfully");
   } catch (err) {
-    console.error("Error writing file:", err);
+    console.error("Error writing to Leaderboard:", err);
   }
 }
 

@@ -1,4 +1,22 @@
-{
-  "name": "test",
-  "time": 44
-}
+[
+  {
+    "name": "Alice",
+    "score": 100
+  },
+  {
+    "name": "Bob",
+    "score": 90
+  },
+  {
+    "name": "test2",
+    "time": 100
+  },
+  {
+    "name": "test2",
+    "time": 100
+  },
+  {
+    "name": "test2",
+    "time": 100
+  }
+]
