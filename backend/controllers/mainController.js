@@ -20,7 +20,9 @@ function gameRun(req, res, next) {
 
 function gameOver(req, res, next) {
   // res.json("Game Over");
-  const data = { name: "test2", time: 100 };
+  const { name, time } = req.body;
+  console.log(name, time);
+  const data = { name: name, time: time };
   writeToLeaderBoard("../db/leaderBoard.json", data);
   res.json("Game Over");
 }
