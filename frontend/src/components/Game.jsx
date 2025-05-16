@@ -192,8 +192,12 @@ function Game() {
     console.log("Game Status:", gameStatus);
   }, [gameStatus]);
 
-  function gameOver() {
-    alert("Game Over");
+  async function gameOver() {
+    try {
+      console.log("Game Over");
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (

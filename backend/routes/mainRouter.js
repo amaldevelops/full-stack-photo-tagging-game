@@ -18,6 +18,6 @@ mainRouter.post("/gamestart", gameStart);
 
 mainRouter.post("/gamerun", gameRun);
 
-mainRouter.get("/gameover", gameOver);
+mainRouter.post("/gameover", gameOver);
 
 export default mainRouter;
