@@ -149,3 +149,19 @@ button:focus-visible {
   list-style-type: none;
   padding-left: 0;
 }
+
+.leaderboard-row {
+  display: flex;
+  justify-content: space-between;
+  width: 300px; /* or 100% */
+  margin-bottom: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.name {
+  text-align: left;
+}
+
+.time {
+  text-align: right;
+}

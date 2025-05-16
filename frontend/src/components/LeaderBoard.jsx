@@ -21,15 +21,6 @@ function LeaderBoard() {
     }
     fetchLeaderBoard();
   }, []);
-  console.dir(leaderBoardScores.length);
-  // const length=leaderBoardScores.length;
-  for (let i = 0; i < leaderBoardScores.length; i++) {
-    console.log(
-      leaderBoardScores[i]["name"],
-      ":",
-      leaderBoardScores[i]["time"]
-    );
-  }
 
   return (
     <div className="LeaderboardDiv">
@@ -37,8 +28,9 @@ function LeaderBoard() {
 
       <ul className="no-bullets">
         {leaderBoardScores.map((entry, index) => (
-          <li key={index}>
-            {entry.name}:{entry.time}
+          <li className="leaderboard-row" key={index}>
+            <span className="name">{entry.name}</span>
+            <span className="time">{entry.time}</span>
           </li>
         ))}
       </ul>

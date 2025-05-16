@@ -1,11 +1,11 @@
 [
   {
     "name": "Alice",
-    "score": "100"
+    "time": "100"
   },
   {
     "name": "Bob",
-    "score": "90"
+    "time": "90"
   },
   {
     "name": "Awesome",
