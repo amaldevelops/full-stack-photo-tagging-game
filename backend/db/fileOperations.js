@@ -32,6 +32,8 @@ async function writeToLeaderBoard(fileName, newEntry) {
 
     existingData.push(newEntry);
 
+    existingData.sort((a, b) => a.time - b.time);
+
     const updatedJson = JSON.stringify(existingData, null, 2);
 
     await fs.writeFile(filePath, updatedJson, "utf-8");

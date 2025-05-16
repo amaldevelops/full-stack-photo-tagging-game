@@ -1,17 +1,24 @@
 [
   {
-    "name": "Alice",
-    "time": "100"
+    "name": "Kamal",
+    "time": "22"
   },
   {
     "name": "Bob",
     "time": "90"
   },
   {
+    "name": "Wimmal",
+    "time": "95"
+  },
+  {
+    "name": "Alice",
+    "time": "100"
+  },
+  {
     "name": "Awesome",
     "time": "100"
   },
-
   {
     "name": "Yaayyy",
     "time": "231"
