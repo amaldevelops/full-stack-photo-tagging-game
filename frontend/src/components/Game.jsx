@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import maverickPic from "../assets/images/maverick.png";
 import iceManPic from "../assets/images/ice-man.png";
@@ -8,6 +9,7 @@ import whereIsMaverickImage from "../assets/images/wheres-maverick-image.jpg";
 import Home from "../assets/images/home-icon.svg";
 
 function Game() {
+  const navigate = useNavigate();
   const [seconds, setSeconds] = useState(0);
 
   const [cssColorChange, SetCssColorChange] = useState({
@@ -195,6 +197,7 @@ function Game() {
   async function gameOver() {
     try {
       console.log("Game Over");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
