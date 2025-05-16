@@ -21,9 +21,9 @@ function Game() {
     maverick: "notFound",
     iceman: "notFound",
     wizard: "notFound",
+    playerName: "",
     currentStatus: "start",
   });
-
   const [imageDimensions, setImageDimensions] = useState({
     width: 0,
     height: 0,
@@ -192,6 +192,10 @@ function Game() {
     console.log("Game Status:", gameStatus);
   }, [gameStatus]);
 
+  function gameOver() {
+    alert("Game Over");
+  }
+
   return (
     <div>
       <div>
@@ -319,6 +323,33 @@ function Game() {
                 Wizard
               </button>
               <button onClick={hideMenu}>Close Menu</button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div>
+        {gameStatus.currentStatus === "gameOver" && (
+          <div className="popup-overlay">
+            <div className="popup-box">
+              {/* <h3>Game Over</h3> */}
+              <label htmlFor="playerName">
+                Game Over ! Please Enter Your Name:
+              </label>
+              <input
+                id="playerName"
+                type="text"
+                value={gameStatus.playerName}
+                onChange={(e) =>
+                  setGameStatus((prev) => ({
+                    ...prev,
+                    playerName: e.target.value,
+                  }))
+                }
+              />
+              <button type="submit" onClick={() => gameOver()}>
+                Submit
+              </button>
             </div>
           </div>
         )}
