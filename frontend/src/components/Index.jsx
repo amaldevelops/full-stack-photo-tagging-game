@@ -10,7 +10,7 @@ function Index() {
     navigate("/game");
   }
   return (
-    <div>
+    <div className="IntroDiv">
       <h1>Where's Maverick (A photo tagging Game)</h1>
       <button type="button" onClick={() => navigateToGame()}>
         Start Game

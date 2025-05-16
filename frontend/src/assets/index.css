@@ -138,3 +138,14 @@ button:focus-visible {
   flex-direction: column;
   gap: 5px;
 }
+
+.LeaderboardDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.no-bullets {
+  list-style-type: none;
+  padding-left: 0;
+}
