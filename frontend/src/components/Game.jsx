@@ -25,7 +25,8 @@ function Game() {
     maverick: "notFound",
     iceman: "notFound",
     wizard: "notFound",
-    playerName: "",
+    name: "",
+    time: "",
     currentStatus: "start",
   });
   const [imageDimensions, setImageDimensions] = useState({
@@ -75,6 +76,8 @@ function Game() {
   useEffect(() => {
     const timer = setInterval(() => setSeconds((seconds) => seconds + 1), 1000);
     // console.log(seconds)
+    setGameStatus((prev) => ({ ...prev, time: timer }));
+
     return () => clearInterval(timer);
   }, []);
 
@@ -201,10 +204,6 @@ function Game() {
 
   async function gameOver() {
     try {
-      const testData = {
-        name: "ThinkPad",
-        time: "90",
-      };
       console.log("Game Over");
       console.log("Game Over Data:", gameOverData);
 
@@ -213,7 +212,7 @@ function Game() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(testData),
+        body: JSON.stringify(gameStatus),
       });
 
       if (!response.ok) {
@@ -310,13 +309,6 @@ function Game() {
           onClick={handleImageClick}
           ref={imgRef}
         />
-        {/* <map name="lookupMap">
-          <area
-            shape="rect"
-            coords="624, 240,633, 267"
-            onClick={() => userSelections("correctSelection")}
-          ></area>
-        </map> */}
       </div>
 
       <div>
@@ -365,18 +357,17 @@ function Game() {
         {gameStatus.currentStatus === "gameOver" && (
           <div className="popup-overlay">
             <div className="popup-box">
-              {/* <h3>Game Over</h3> */}
               <label htmlFor="playerName">
                 Game Over ! Please Enter Your Name:
               </label>
               <input
                 id="playerName"
                 type="text"
-                value={gameStatus.playerName}
+                value={gameStatus.name}
                 onChange={(e) =>
                   setGameStatus((prev) => ({
                     ...prev,
-                    playerName: e.target.value,
+                    name: e.target.value,
                   }))
                 }
               />
