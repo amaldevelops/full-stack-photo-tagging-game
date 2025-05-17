@@ -25,12 +25,10 @@ catch(err)
 console.error("Error")
 }
   
-
   res.json("Game Run");
 }
 
 function gameOver(req, res, next) {
-  // res.json("Game Over");
   const { name, time } = req.body;
   console.log(name, time);
   const data = { name: name, time: time };

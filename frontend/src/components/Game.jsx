@@ -75,7 +75,6 @@ function Game() {
 
   useEffect(() => {
     const timer = setInterval(() => setSeconds((seconds) => seconds + 1), 1000);
-    // console.log(seconds)
     setGameStatus((prev) => ({ ...prev, time: timer }));
 
     return () => clearInterval(timer);
