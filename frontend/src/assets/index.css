@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -148,7 +148,6 @@ button:focus-visible {
   gap: 5px;
   justify-content: center;
   align-items: center;
-  /* padding: 10px; */
 }
 
 .LeaderboardDiv {
@@ -179,7 +178,6 @@ button:focus-visible {
   text-align: right;
 }
 
-/* GameOverModal.css */
 
 .popup-overlay {
   position: fixed;

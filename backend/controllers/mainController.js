@@ -1,31 +1,11 @@
 import { readLeaderBoard, writeToLeaderBoard } from "../db/fileOperations.js";
 
 function mainRoute(req, res, next) {
-  res.json("All Backend Systems running OK!");
-}
-
-function gameStart(req, res, next) {
-  res.json(
-    `Game Started ! ${{
-      Maverick: process.env.MAVERICK,
-      Iceman: process.env.ICEMAN,
-      Wizard: process.env.WIZARD,
-    }}`
-  );
-}
-
-function gameRun(req, res, next) {
-try{
-
-  
-}
-
-catch(err)
-{
-console.error("Error")
-}
-  
-  res.json("Game Run");
+  res.json({
+    status: "All Backend Systems running OK!",
+    leaderboard: "/leaderboard",
+    gameover: "/gameover",
+  });
 }
 
 function gameOver(req, res, next) {
@@ -48,4 +28,4 @@ async function leaderBoard(req, res, next) {
   }
 }
 
-export { mainRoute, gameStart, gameRun, gameOver, leaderBoard };
+export { mainRoute, gameOver, leaderBoard };

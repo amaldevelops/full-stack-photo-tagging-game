@@ -12,8 +12,8 @@ function Index() {
     <div className="IntroDiv">
       <h1>Where's Maverick (A photo tagging Game)</h1>
       <p>
-        Wheres Waldo type game where you should try to find Maverick, Ice
-        Man, and Wizard as soon as possible!
+        Wheres Waldo type game where you should try to find Maverick, Ice Man,
+        and Wizard as soon as possible!
       </p>
       <button className="button" type="button" onClick={() => navigateToGame()}>
         Start Game
