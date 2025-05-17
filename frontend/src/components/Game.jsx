@@ -16,6 +16,8 @@ function Game() {
   const navigate = useNavigate();
   const [seconds, setSeconds] = useState(0);
 
+  const [backEndStatus, SetBackEndStatus] = useState("loading");
+
   const [cssColorChange, SetCssColorChange] = useState({
     maverick: "",
     iceman: "",
@@ -224,6 +226,7 @@ function Game() {
       });
 
       if (!response.ok) {
+        SetBackEndStatus("error");
         throw new Error("HTTP Error! Status", response.status);
       }
 
@@ -232,8 +235,31 @@ function Game() {
 
       navigate("/");
     } catch (error) {
+      alert(
+        "Backend or Network error ! Please try again, in few minutes if you wish to save your score on leaderboard"
+      );
+      SetBackEndStatus("error");
       console.error(error);
     }
+  }
+
+  function resetGame() {
+    setGameStatus((prev) => ({
+      ...prev,
+      maverick: "notFound",
+      iceman: "notFound",
+      wizard: "notFound",
+      name: "",
+      time: "",
+      currentStatus: "start",
+    }));
+
+    SetCssColorChange((prev) => ({
+      ...prev,
+      maverick: "",
+      iceman: "",
+      wizard: "",
+    }));
   }
 
   return (
@@ -382,6 +408,13 @@ function Game() {
               <button type="submit" onClick={() => gameOver()}>
                 Submit
               </button>
+              <button className="close-btn" onClick={() => resetGame()}>
+                Reset Game
+              </button>
+              <p>
+                Please note if you click reset game, scores will not be saved in
+                leaderboard
+              </p>
             </div>
           </div>
         )}
