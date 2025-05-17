@@ -4,12 +4,12 @@ import ErrorPage from "../components/ErrorPage";
 
 const Routes = [
   {
-    path: "/",
+    path: "/full-stack-photo-tagging-game",
     element: <Index />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/game",
+    path: "/full-stack-photo-tagging-game/game",
     element: <Game />,
     errorElement: <ErrorPage />,
   },

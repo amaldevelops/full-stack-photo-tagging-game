@@ -6,7 +6,7 @@ function Index() {
 
   function navigateToGame() {
     console.log("Navigate to Game");
-    navigate("/game");
+    navigate("/full-stack-photo-tagging-game/game");
   }
   return (
     <div className="IntroDiv">

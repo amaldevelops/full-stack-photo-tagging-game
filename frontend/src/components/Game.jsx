@@ -233,7 +233,7 @@ function Game() {
       const queryResult = await response.json();
       console.log(queryResult);
 
-      navigate("/");
+      navigate("/full-stack-photo-tagging-game");
     } catch (error) {
       alert(
         "Backend or Network error ! Please try again, in few minutes if you wish to save your score on leaderboard"
@@ -323,7 +323,7 @@ function Game() {
           </figcaption>
         </figure>
 
-        <Link to="/">
+        <Link to="/full-stack-photo-tagging-game">
           <figure>
             <img className="characterImages" src={Home} alt="Home Picture" />
 
