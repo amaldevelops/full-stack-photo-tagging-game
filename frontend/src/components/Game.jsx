@@ -11,6 +11,8 @@ import Home from "../assets/images/home-icon.svg";
 const apiURL = import.meta.env.VITE_API_URL;
 
 function Game() {
+  const timerRef = useRef(null);
+
   const navigate = useNavigate();
   const [seconds, setSeconds] = useState(0);
 
@@ -52,8 +54,6 @@ function Game() {
   // This will record the relevant user selections
   const [userSelection, setUserSelection] = useState();
 
-  const [gameOverData, SetGameOverData] = useState([]);
-
   const imgRef = useRef(null);
 
   // Store mavericks's normalized coordinates based on original image dimensions (1920x1080)
@@ -74,29 +74,38 @@ function Game() {
   };
 
   useEffect(() => {
-    const timerID = setInterval(() => setSeconds((seconds) => seconds + 1), 1000);
+    timerRef.current = setInterval(
+      () => setSeconds((seconds) => seconds + 1),
+      1000
+    );
 
-    return () => clearInterval(timerID);
+    return () => clearInterval(timerRef.current);
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setGameStatus((prev) => ({ ...prev, time: seconds }));
+  }, [seconds]);
 
-  },[seconds])
+  useEffect(() => {
+    function gameState() {
+      if (
+        gameStatus.maverick === "found" &&
+        gameStatus.iceman === "found" &&
+        gameStatus.wizard === "found" &&
+        gameStatus.currentStatus !== "gameOver"
+      ) {
+        console.log("Game Ended");
+        setGameStatus((prev) => ({ ...prev, currentStatus: "gameOver" }));
 
-  function gameState() {
-    if (
-      gameStatus.maverick == "found" &&
-      gameStatus.iceman == "found" &&
-      gameStatus.wizard == "found"
-    ) {
-      console.log("Game Ended");
-      setGameStatus((prev) => ({ ...prev, currentStatus: "gameOver" }));
-      SetGameOverData(gameStatus);
-    } else {
-      console.log("Next Selection....");
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+        }
+      } else {
+        console.log("Waiting for Selection....");
+      }
     }
-  }
+    gameState();
+  }, [gameStatus]);
 
   useEffect(() => {
     const img = imgRef.current;
@@ -136,7 +145,6 @@ function Game() {
       setGameStatus((prev) => ({ ...prev, maverick: "found" }));
       SetCssColorChange((prev) => ({ ...prev, maverick: "correctSelection" }));
       setMenuVisible(false);
-      gameState();
     } else if (
       characterName === "iceman" &&
       Math.abs(normalizedCoords.x - iceManNormalized.x) < tolerance &&
@@ -146,7 +154,6 @@ function Game() {
       SetCssColorChange((prev) => ({ ...prev, iceman: "correctSelection" }));
       setGameStatus((prev) => ({ ...prev, iceman: "found" }));
       setMenuVisible(false);
-      gameState();
     } else if (
       characterName === "wizard" &&
       Math.abs(normalizedCoords.x - wizardNormalized.x) < tolerance &&
@@ -156,7 +163,6 @@ function Game() {
       SetCssColorChange((prev) => ({ ...prev, wizard: "correctSelection" }));
       setGameStatus((prev) => ({ ...prev, wizard: "found" }));
       setMenuVisible(false);
-      gameState();
     } else {
       console.log(
         "Please Try again! Character: " + characterName + " is Incorrect !"
@@ -167,7 +173,6 @@ function Game() {
       }));
       console.log(cssColorChange);
       setMenuVisible(false);
-      gameState();
     }
   }
 
@@ -201,9 +206,9 @@ function Game() {
     setMenuVisible(true);
   };
 
-  useEffect(() => {
-    console.log("Game Status:", gameStatus);
-  }, [gameStatus]);
+  // useEffect(() => {
+  //   console.log("Game Status:", gameStatus);
+  // }, [gameStatus]);
 
   async function gameOver() {
     try {
