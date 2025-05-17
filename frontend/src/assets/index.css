@@ -142,6 +142,15 @@ button:focus-visible {
   padding: 300px;
 }
 
+.gameIntroDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  /* padding: 10px; */
+}
+
 .LeaderboardDiv {
   display: flex;
   flex-direction: column;

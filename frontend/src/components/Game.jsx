@@ -281,7 +281,7 @@ function Game() {
           </div>
         )}
       </div>
-      <div className="IntroDiv">
+      <div className="gameIntroDiv">
         <h1>Where's Maverick (A photo tagging Game)</h1>
         <p>Try to find Maverick, Ice Man, and Wizard as soon as possible!</p>
       </div>
@@ -350,8 +350,8 @@ function Game() {
           <div
             className="menu"
             style={{
-              left: `${menuPosition.x + 10}px`,
-              top: `${menuPosition.y + 500}px`,
+              left: `${menuPosition.x + 20}px`,
+              top: `${menuPosition.y + 100}px`,
             }}
           >
             <div className="menuButtonsDiv">
