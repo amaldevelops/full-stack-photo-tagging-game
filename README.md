@@ -14,8 +14,8 @@ Keep track of how long it takes from when the photo is first loaded to when the 
 
 ## 🚀 Live Demo
 
-- **Front End (GitHub Pages):** [https://www.amalk.au/](https://www.amalk.au/)
-- **Backend (Render):** []()
+- **Front End (GitHub Pages):** [https://www.amalk.au/full-stack-photo-tagging-game](https://www.amalk.au/full-stack-photo-tagging-game)
+- **Backend (Render):** [https://full-stack-photo-tagging-game.onrender.com/](https://full-stack-photo-tagging-game.onrender.com/)
 
   > Note: Free hosting tiers may cause delays of up to 50 seconds on first load.
 
