@@ -41,7 +41,7 @@ function LeaderBoard() {
 
       {backEndStatus === "ok" && leaderBoardScores.length > 0 && (
         <>
-          <h1>Leader Board</h1>
+          <h2>Leader Board</h2>
           <ul className="no-bullets">
             {leaderBoardScores.map((entry, index) => (
               <li className="leaderboard-row" key={index}>
