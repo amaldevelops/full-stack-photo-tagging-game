@@ -8,6 +8,14 @@
     "time": "90"
   },
   {
+    "name": "ThinkPad",
+    "time": "90"
+  },
+  {
+    "name": "ThinkPad",
+    "time": "90"
+  },
+  {
     "name": "Wimmal",
     "time": "95"
   },
@@ -46,9 +54,5 @@
   {
     "name": "Sunimal",
     "time": "925"
-  },
-  {
-    "name": "ThinkPad",
-    "time": "90"
   }
 ]

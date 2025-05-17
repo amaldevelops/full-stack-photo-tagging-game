@@ -223,7 +223,7 @@ function Game() {
       const queryResult = await response.json();
       console.log(queryResult);
 
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
