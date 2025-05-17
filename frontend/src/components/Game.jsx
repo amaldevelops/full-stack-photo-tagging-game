@@ -8,6 +8,8 @@ import wizardPic from "../assets/images/wizard.png";
 import whereIsMaverickImage from "../assets/images/wheres-maverick-image.jpg";
 import Home from "../assets/images/home-icon.svg";
 
+const apiURL = import.meta.env.VITE_API_URL;
+
 function Game() {
   const navigate = useNavigate();
   const [seconds, setSeconds] = useState(0);
@@ -49,6 +51,8 @@ function Game() {
   // This will record the relevant user selections
   const [userSelection, setUserSelection] = useState();
 
+  const [gameOverData, SetGameOverData] = useState([]);
+
   const imgRef = useRef(null);
 
   // Store mavericks's normalized coordinates based on original image dimensions (1920x1080)
@@ -72,7 +76,7 @@ function Game() {
     const timer = setInterval(() => setSeconds((seconds) => seconds + 1), 1000);
     // console.log(seconds)
     return () => clearInterval(timer);
-  }, [seconds]);
+  }, []);
 
   function gameState() {
     if (
@@ -82,6 +86,7 @@ function Game() {
     ) {
       console.log("Game Ended");
       setGameStatus((prev) => ({ ...prev, currentStatus: "gameOver" }));
+      SetGameOverData(gameStatus);
     } else {
       console.log("Next Selection....");
     }
@@ -196,8 +201,29 @@ function Game() {
 
   async function gameOver() {
     try {
+      const testData = {
+        name: "ThinkPad",
+        time: "90",
+      };
       console.log("Game Over");
-      navigate("/");
+      console.log("Game Over Data:", gameOverData);
+
+      let response = await fetch(`${apiURL}/gameover`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(testData),
+      });
+
+      if (!response.ok) {
+        throw new Error("HTTP Error! Status", response.status);
+      }
+
+      const queryResult = await response.json();
+      console.log(queryResult);
+
+      // navigate("/");
     } catch (error) {
       console.error(error);
     }
