@@ -74,11 +74,15 @@ function Game() {
   };
 
   useEffect(() => {
-    const timer = setInterval(() => setSeconds((seconds) => seconds + 1), 1000);
-    setGameStatus((prev) => ({ ...prev, time: timer }));
+    const timerID = setInterval(() => setSeconds((seconds) => seconds + 1), 1000);
 
-    return () => clearInterval(timer);
+    return () => clearInterval(timerID);
   }, []);
+
+  useEffect(()=>{
+    setGameStatus((prev) => ({ ...prev, time: seconds }));
+
+  },[seconds])
 
   function gameState() {
     if (
@@ -204,7 +208,7 @@ function Game() {
   async function gameOver() {
     try {
       console.log("Game Over");
-      console.log("Game Over Data:", gameOverData);
+      // console.log("Game Over Data:", gameOverData);
 
       let response = await fetch(`${apiURL}/gameover`, {
         method: "POST",
