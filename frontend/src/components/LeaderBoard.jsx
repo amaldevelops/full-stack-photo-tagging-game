@@ -19,7 +19,6 @@ function LeaderBoard() {
         const queryResult = await response.json();
         SetLeaderBoardScores(queryResult);
         SetBackEndStatus("ok"); // Set status to ok after successful fetch
-
       } catch (err) {
         SetBackEndStatus("error");
         console.error(err);
@@ -31,12 +30,13 @@ function LeaderBoard() {
 
   return (
     <div className="LeaderboardDiv">
-      {backEndStatus === "loading" && (
-        <p>BackEnd Resuming....</p>
-      )}
+      {backEndStatus === "loading" && <p>BackEnd Resuming....</p>}
 
       {backEndStatus === "error" && (
-        <p>Error loading leaderboard data. Please try again later.</p>
+        <p>
+          Error loading leaderboard data. This may be due to backend is in the
+          process of waking up. Please try again later.
+        </p>
       )}
 
       {backEndStatus === "ok" && leaderBoardScores.length > 0 && (
